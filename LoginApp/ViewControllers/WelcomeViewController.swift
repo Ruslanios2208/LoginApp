@@ -15,25 +15,10 @@ final class WelcomeViewController: UIViewController {
     // MARK: - Public Properties
     var person: Person!
     
-    // MARK: - Private Properties
-    private let primaryColor = UIColor(
-        red: 210/255,
-        green: 109/255,
-        blue: 128/255,
-        alpha: 1
-    )
-    
-    private let secondaryColor = UIColor(
-        red: 107/255,
-        green: 148/255,
-        blue: 230/255,
-        alpha: 1
-    )
-    
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+        view.setupBackground()
         greetingLabel.text = "Welcome, \(person.name) \(person.surname)!"
     }
 }
@@ -49,5 +34,12 @@ extension UIView {
         gradient.startPoint = CGPoint(x: 0, y: 0)
         gradient.endPoint = CGPoint(x: 0, y: 1)
         layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func setupBackground() {
+        self.addVerticalGradientLayer(
+            topColor: UIColor(red: 210/255, green: 109/255, blue: 128/255, alpha: 1),
+            bottomColor: UIColor(red: 107/255, green: 148/255, blue: 230/255, alpha: 1)
+            )
     }
 }
