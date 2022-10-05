@@ -9,18 +9,32 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    // MARK: - IBOutlets
+    // MARK: - IB Outlets
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
     // MARK: - Private Properties
-    private let userName = "123"
-    private let password = "321"
+    private let user = User.getUser()
     
     // MARK: - Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        userNameTF.text = user.userName
+        passwordTF.text = user.password
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.userName = userName
+        guard let tabBarVC = segue.destination as? UITabBarController else { return }
+        guard let viewControllers = tabBarVC.viewControllers else { return }
+        
+        viewControllers.forEach { viewController in
+            if let welcomeVC = viewController as? WelcomeViewController {
+                welcomeVC.person = user.person
+            } else if let navigationVC = viewController as? UINavigationController {
+                guard let infoVC = navigationVC.topViewController as? InfoViewController else { return }
+                infoVC.person = user.person
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -28,9 +42,9 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
 
-    // MARK: - IBActions
+    // MARK: - IB Actions
     @IBAction func logInButtonPressed() {
-        guard userNameTF.text == userName, passwordTF.text == password else {
+        guard userNameTF.text == user.userName, passwordTF.text == user.password else {
             showAlert(
                 withTitle: "Invalid login or password",
                 andMessage: "Please, enter correct login and password",
@@ -43,8 +57,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
-            ? showAlert(withTitle: "Oops!", andMessage: "Your name is \(userName)")
-            : showAlert(withTitle: "Oops!", andMessage: "Your name is \(password)")
+            ? showAlert(withTitle: "Oops!", andMessage: "Your name is \(user.userName)")
+            : showAlert(withTitle: "Oops!", andMessage: "Your password is \(user.password)")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {

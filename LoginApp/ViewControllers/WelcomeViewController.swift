@@ -9,10 +9,13 @@ import UIKit
 
 final class WelcomeViewController: UIViewController {
 
+    // MARK: - IB Outlets
     @IBOutlet var greetingLabel: UILabel!
     
-    var userName = ""
+    // MARK: - Public Properties
+    var person: Person!
     
+    // MARK: - Private Properties
     private let primaryColor = UIColor(
         red: 210/255,
         green: 109/255,
@@ -27,10 +30,11 @@ final class WelcomeViewController: UIViewController {
         alpha: 1
     )
     
+    // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
-        greetingLabel.text = "Welcome, \(userName)!"
+        greetingLabel.text = "Welcome, \(person.name) \(person.surname)!"
     }
 }
 
