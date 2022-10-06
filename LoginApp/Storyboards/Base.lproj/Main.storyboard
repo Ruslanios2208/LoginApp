@@ -317,24 +317,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKv-s8-z9P">
-                                <rect key="frame" x="16" y="54" width="288" height="14.5"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaV-Bq-Ibv">
+                                <rect key="frame" x="16" y="54" width="288" height="465"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QWn-uj-RTR"/>
                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                         <constraints>
-                            <constraint firstItem="QWn-uj-RTR" firstAttribute="trailing" secondItem="uKv-s8-z9P" secondAttribute="trailing" constant="16" id="4fD-b7-Drj"/>
-                            <constraint firstItem="uKv-s8-z9P" firstAttribute="leading" secondItem="QWn-uj-RTR" secondAttribute="leading" constant="16" id="YME-KM-hGS"/>
-                            <constraint firstItem="uKv-s8-z9P" firstAttribute="top" secondItem="QWn-uj-RTR" secondAttribute="top" constant="10" id="pjK-y0-6AH"/>
+                            <constraint firstItem="QWn-uj-RTR" firstAttribute="trailing" secondItem="OaV-Bq-Ibv" secondAttribute="trailing" constant="16" id="Jj2-m0-fUH"/>
+                            <constraint firstItem="OaV-Bq-Ibv" firstAttribute="top" secondItem="QWn-uj-RTR" secondAttribute="top" constant="10" id="R6U-Hy-UAa"/>
+                            <constraint firstItem="OaV-Bq-Ibv" firstAttribute="bottom" secondItem="QWn-uj-RTR" secondAttribute="bottom" id="VdU-gY-D5n"/>
+                            <constraint firstItem="OaV-Bq-Ibv" firstAttribute="leading" secondItem="QWn-uj-RTR" secondAttribute="leading" constant="16" id="rn5-XH-zP9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8Tq-Zi-ZhG"/>
                     <connections>
-                        <outlet property="bioLabel" destination="uKv-s8-z9P" id="wFU-bh-yiL"/>
+                        <outlet property="bioTextView" destination="OaV-Bq-Ibv" id="Q3h-eL-AhL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTq-Tg-rTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -364,6 +366,9 @@
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

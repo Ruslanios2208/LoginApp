@@ -10,7 +10,7 @@ import UIKit
 class BioViewController: UIViewController {
 
     // MARK: - IB Outlets
-    @IBOutlet var bioLabel: UILabel!
+    @IBOutlet var bioTextView: UITextView!
     
     // MARK: - Public Properties
     var bio = ""
@@ -19,6 +19,6 @@ class BioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setupBackground()
-        bioLabel.text = bio
+        bioTextView.text = bio
     }
 }

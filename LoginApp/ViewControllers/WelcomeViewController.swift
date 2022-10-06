@@ -19,7 +19,7 @@ final class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setupBackground()
-        greetingLabel.text = "Welcome, \(person.name) \(person.surname)!"
+        greetingLabel.text = "Welcome, \(person.fullName)!"
     }
 }
 

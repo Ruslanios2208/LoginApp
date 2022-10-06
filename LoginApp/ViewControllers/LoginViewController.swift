@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameTF.text = user.userName
+        userNameTF.text = user.login
         passwordTF.text = user.password
     }
     
@@ -27,10 +27,10 @@ class LoginViewController: UIViewController {
         guard let tabBarVC = segue.destination as? UITabBarController else { return }
         guard let viewControllers = tabBarVC.viewControllers else { return }
         
-        viewControllers.forEach { viewController in
-            if let welcomeVC = viewController as? WelcomeViewController {
+        viewControllers.forEach {
+            if let welcomeVC = $0 as? WelcomeViewController {
                 welcomeVC.person = user.person
-            } else if let navigationVC = viewController as? UINavigationController {
+            } else if let navigationVC = $0 as? UINavigationController {
                 guard let infoVC = navigationVC.topViewController as? InfoViewController else { return }
                 infoVC.person = user.person
             }
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - IB Actions
     @IBAction func logInButtonPressed() {
-        guard userNameTF.text == user.userName, passwordTF.text == user.password else {
+        guard userNameTF.text == user.login, passwordTF.text == user.password else {
             showAlert(
                 withTitle: "Invalid login or password",
                 andMessage: "Please, enter correct login and password",
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0
-            ? showAlert(withTitle: "Oops!", andMessage: "Your name is \(user.userName)")
+            ? showAlert(withTitle: "Oops!", andMessage: "Your name is \(user.login)")
             : showAlert(withTitle: "Oops!", andMessage: "Your password is \(user.password)")
     }
     

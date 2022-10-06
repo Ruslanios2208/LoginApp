@@ -10,7 +10,11 @@ import UIKit
 class InfoViewController: UIViewController {
 
     // MARK: - IB Outlets
-    @IBOutlet var image: UIImageView!
+    @IBOutlet var image: UIImageView! {
+        didSet {
+            image.layer.cornerRadius = image.frame.width / 2
+        }
+    }
     
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var surnameLabel: UILabel!
@@ -25,18 +29,18 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setupBackground()
-        title = person.name + " " + person.surname
-        image.image = UIImage(named: "Image")
+        title = person.fullName
+        image.image = UIImage(named: person.photo)
         setValue()
     }
     
-    override func viewWillLayoutSubviews() {
-        image.layer.cornerRadius = image.frame.width / 2
-    }
+//    override func viewWillLayoutSubviews() {
+//        image.layer.cornerRadius = image.frame.width / 2
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let bioVC = segue.destination as? BioViewController else { return }
-        bioVC.title = "\(person.name) \(person.surname) Bio"
+        bioVC.title = "\(person.fullName) Bio"
         bioVC.bio = person.bio
     }
     
