@@ -34,10 +34,6 @@ class InfoViewController: UIViewController {
         setValue()
     }
     
-//    override func viewWillLayoutSubviews() {
-//        image.layer.cornerRadius = image.frame.width / 2
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let bioVC = segue.destination as? BioViewController else { return }
         bioVC.title = "\(person.fullName) Bio"
